@@ -1,9 +1,9 @@
-
 import React from 'react';
 import { Phase, NavItem } from './types';
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: 'Mission', href: '#mission' },
+  { label: 'Home', href: '#mission' },
+  { label: 'Mission', href: '#identity' },
   { label: 'Roadmap', href: '#journey' },
   { label: 'Allocation', href: '#allocation' },
   { label: 'Governance', href: '#governance' },
