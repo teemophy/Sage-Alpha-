@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { NAV_ITEMS, Logo } from '../constants';
 
@@ -11,7 +10,6 @@ const Header: React.FC = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
       
-      // Track active section
       const sections = NAV_ITEMS.map(item => item.href.substring(1));
       let current = '';
       for (const section of sections) {
@@ -39,6 +37,8 @@ const Header: React.FC = () => {
         top: element.offsetTop - 80,
         behavior: 'smooth'
       });
+    } else if (href === '#mission') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     setMobileMenuOpen(false);
   };
@@ -55,6 +55,7 @@ const Header: React.FC = () => {
           <button 
             onClick={handleLogoClick}
             className="flex items-center gap-4 group focus:outline-none"
+            aria-label="Go to home"
           >
             <Logo className="w-12 h-12 transition-transform group-hover:scale-105" />
             <span className="font-space text-xl font-bold tracking-tighter hidden sm:block">
@@ -75,7 +76,7 @@ const Header: React.FC = () => {
                   }`}
                 >
                   {item.label}
-                  <span className={`absolute bottom-0 left-0 w-full h-px bg-gold scale-x-0 transition-transform duration-300 origin-left ${isActive ? 'scale-x-100' : ''}`} />
+                  <span className={`absolute bottom-0 left-0 w-full h-px bg-gold transition-transform duration-300 origin-left ${isActive ? 'scale-x-100' : 'scale-x-0'}`} />
                 </a>
               );
             })}
@@ -84,6 +85,7 @@ const Header: React.FC = () => {
           <button 
             className="md:hidden text-white p-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle mobile menu"
           >
             {mobileMenuOpen ? (
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
@@ -95,8 +97,8 @@ const Header: React.FC = () => {
       </header>
 
       {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 z-[90] glass transition-all duration-500 md:hidden ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-        <div className="flex flex-col items-center justify-center h-full gap-12">
+      <div className={`fixed inset-0 z-[90] glass transition-all duration-500 md:hidden flex items-center justify-center ${mobileMenuOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full'}`}>
+        <div className="flex flex-col items-center gap-10">
           {NAV_ITEMS.map((item) => (
             <a 
               key={item.label} 
