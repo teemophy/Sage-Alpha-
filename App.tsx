@@ -144,7 +144,7 @@ const App: React.FC = () => {
       <main>
         <Hero onIntroRequest={() => setIsIntroOpen(true)} />
         
-        <div className="container mx-auto px-6 py-8">
+        <div className="container mx-auto px-6 py-4">
           <div className="flex items-center gap-4">
             <div className="h-px flex-grow bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
             <div className="w-1 h-1 rounded-full bg-gold/50"></div>
@@ -157,15 +157,15 @@ const App: React.FC = () => {
         <AllocationTree />
         <Governance />
 
-        <section className="py-32 relative overflow-hidden">
+        <section className="py-20 relative overflow-hidden">
           <div className="container mx-auto px-6 text-center">
-            <div className="max-w-3xl mx-auto glass p-12 md:p-24 rounded-3xl border-gold/5 relative group hover:border-gold/20 transition-all duration-700">
+            <div className="max-w-3xl mx-auto glass p-10 md:p-16 rounded-3xl border-gold/5 relative group hover:border-gold/20 transition-all duration-700">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gold px-6 py-2 rounded-lg text-navy text-[10px] font-bold uppercase tracking-[0.3em] shadow-2xl">
                 Gateway Introduction
               </div>
               
               <h2 className="font-space text-4xl md:text-5xl font-bold mb-8 tracking-tight">Selective Connectivity</h2>
-              <p className="text-slate-500 mb-12 text-base md:text-lg leading-relaxed max-w-xl mx-auto font-light">
+              <p className="text-slate-500 mb-10 text-base md:text-lg leading-relaxed max-w-xl mx-auto font-light">
                 SageAlpha is engineered for long-horizon institutional viability. We invite sophisticated entities to initiate a secure introduction protocol.
               </p>
               

@@ -2,9 +2,9 @@ import React from 'react';
 
 const Governance: React.FC = () => {
   return (
-    <section id="governance" className="py-24 relative overflow-hidden">
+    <section id="governance" className="py-16 relative overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto mb-16">
+        <div className="max-w-4xl mx-auto mb-12">
           <div className="text-[10px] font-mono text-gold mb-4 uppercase tracking-[0.4em] font-bold">Protocol Foundation</div>
           <h2 className="font-space text-4xl md:text-5xl font-bold mb-6">Governance & Integrity</h2>
           <p className="text-slate-400">

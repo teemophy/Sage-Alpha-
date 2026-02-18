@@ -2,7 +2,7 @@ import React from 'react';
 
 const Identity: React.FC = () => {
   return (
-    <section id="identity" className="py-24 relative bg-navy">
+    <section id="identity" className="py-16 relative bg-navy">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 items-stretch">
           
@@ -33,7 +33,7 @@ const Identity: React.FC = () => {
               <svg className="w-48 h-48 text-white" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" /></svg>
             </div>
             <div className="text-[10px] font-mono text-slate-500 mb-6 uppercase tracking-[0.3em] font-bold">Boundary Map</div>
-            <h3 className="font-space text-4xl font-bold mb-8 text-slate-400">What We Are Not</h3>
+            <h3 className="font-space text-4xl font-bold mb-8 text-slate-400">What We Not</h3>
             <ul className="space-y-6 text-slate-500 flex-grow text-sm md:text-base leading-relaxed italic">
               <li className="flex gap-4 items-start">
                 <span className="font-mono font-bold mt-1">01</span>

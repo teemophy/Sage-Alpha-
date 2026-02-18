@@ -2,7 +2,7 @@ import React from 'react';
 
 const Hero: React.FC<{ onIntroRequest: () => void }> = ({ onIntroRequest }) => {
   return (
-    <section id="mission" className="relative pt-32 pb-24 md:pt-56 md:pb-48 overflow-hidden">
+    <section id="mission" className="relative pt-24 pb-16 md:pt-36 md:pb-24 overflow-hidden">
       {/* Atmospheric Backgrounds */}
       <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gold/5 rounded-full blur-[140px] -z-10 animate-pulse opacity-50"></div>
       <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-white/5 rounded-full blur-[120px] -z-10"></div>
@@ -52,7 +52,7 @@ const Hero: React.FC<{ onIntroRequest: () => void }> = ({ onIntroRequest }) => {
             </div>
 
             {/* Systematic Growth Curve SVG */}
-            <div className="mt-40 w-full max-w-4xl opacity-20 pointer-events-none">
+            <div className="mt-32 w-full max-w-4xl opacity-20 pointer-events-none">
               <svg viewBox="0 0 800 160" className="w-full h-auto">
                 <path 
                   d="M0,150 Q100,145 200,120 T400,80 T600,40 T800,10" 
