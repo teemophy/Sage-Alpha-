@@ -144,7 +144,7 @@ const App: React.FC = () => {
       <main>
         <Hero onIntroRequest={() => setIsIntroOpen(true)} />
         
-        <div className="container mx-auto px-6 py-4">
+        <div className="container mx-auto px-6 py-2">
           <div className="flex items-center gap-4">
             <div className="h-px flex-grow bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
             <div className="w-1 h-1 rounded-full bg-gold/50"></div>
@@ -157,28 +157,28 @@ const App: React.FC = () => {
         <AllocationTree />
         <Governance />
 
-        <section className="py-20 relative overflow-hidden">
+        <section className="py-12 md:py-16 relative overflow-hidden">
           <div className="container mx-auto px-6 text-center">
-            <div className="max-w-3xl mx-auto glass p-10 md:p-16 rounded-3xl border-gold/5 relative group hover:border-gold/20 transition-all duration-700">
+            <div className="max-w-3xl mx-auto glass p-8 md:p-12 rounded-3xl border-gold/5 relative group hover:border-gold/20 transition-all duration-700">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gold px-6 py-2 rounded-lg text-navy text-[10px] font-bold uppercase tracking-[0.3em] shadow-2xl">
                 Gateway Introduction
               </div>
               
-              <h2 className="font-space text-4xl md:text-5xl font-bold mb-8 tracking-tight">Selective Connectivity</h2>
-              <p className="text-slate-500 mb-10 text-base md:text-lg leading-relaxed max-w-xl mx-auto font-light">
+              <h2 className="font-space text-3xl md:text-4xl font-bold mb-6 tracking-tight text-white">Selective Connectivity</h2>
+              <p className="text-slate-500 mb-8 text-base leading-relaxed max-w-xl mx-auto font-light">
                 SageAlpha is engineered for long-horizon institutional viability. We invite sophisticated entities to initiate a secure introduction protocol.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <button 
                   onClick={() => setIsIntroOpen(true)}
-                  className="px-12 py-5 bg-gold text-navy font-bold rounded-xl hover:opacity-90 active:scale-[0.98] transition-all text-xs uppercase tracking-widest shadow-xl"
+                  className="px-10 py-4 bg-gold text-navy font-bold rounded-xl hover:opacity-90 active:scale-[0.98] transition-all text-xs uppercase tracking-widest shadow-xl"
                 >
                   Initiate Introduction
                 </button>
                 <button 
                   onClick={() => setIsTerminalOpen(true)}
-                  className="px-12 py-5 glass border border-white/5 text-white/80 font-bold rounded-xl hover:bg-white/5 transition-all text-xs uppercase tracking-widest"
+                  className="px-10 py-4 glass border border-white/5 text-white/80 font-bold rounded-xl hover:bg-white/5 transition-all text-xs uppercase tracking-widest"
                 >
                   System Log
                 </button>
