@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Identity from './components/Identity';
@@ -8,117 +8,99 @@ import Governance from './components/Governance';
 import Footer from './components/Footer';
 
 const IntroModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
-  if (!isOpen) return null;
-  return (
-    <div className="fixed inset-0 z-[300] flex items-center justify-center p-4 bg-black/90 backdrop-blur-xl">
-      <div className="w-full max-w-xl glass rounded-2xl overflow-hidden border-gold/20 p-8">
-        <div className="flex justify-between items-start mb-8">
-          <div>
-            <h3 className="font-space text-2xl font-bold text-white mb-2 tracking-tight">Request Introduction</h3>
-            <p className="text-slate-400 text-sm">Selective onboarding for institutional allocators.</p>
-          </div>
-          <button onClick={onClose} className="text-slate-500 hover:text-white transition-colors text-2xl">&times;</button>
-        </div>
-        <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); alert('Request Encrypted. Validation pending review.'); onClose(); }}>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-1.5">
-              <label className="text-[9px] uppercase tracking-[0.2em] text-slate-500 font-bold">Identity</label>
-              <input type="text" required className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm focus:border-gold outline-none transition-all placeholder:text-slate-700" placeholder="Full Name" />
-            </div>
-            <div className="space-y-1.5">
-              <label className="text-[9px] uppercase tracking-[0.2em] text-slate-500 font-bold">Communication</label>
-              <input type="email" required className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm focus:border-gold outline-none transition-all placeholder:text-slate-700" placeholder="Corporate Email" />
-            </div>
-          </div>
-          <div className="space-y-1.5">
-            <label className="text-[9px] uppercase tracking-[0.2em] text-slate-500 font-bold">Institutional Affiliation</label>
-            <input type="text" required className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm focus:border-gold outline-none transition-all placeholder:text-slate-700" placeholder="Firm Name / Entity Type" />
-          </div>
-          <button type="submit" className="w-full py-4 bg-gold text-navy font-bold rounded-xl hover:opacity-90 active:scale-[0.98] transition-all text-xs uppercase tracking-widest">
-            Initiate Secure Protocol
-          </button>
-        </form>
-      </div>
-    </div>
-  );
-};
-
-const TerminalModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
-  const [logs, setLogs] = useState<string[]>([]);
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (isOpen) {
-      const messages = [
-        "KERNEL INITIALIZING...",
-        "ENCRYPTION: AES-256 ACTIVE",
-        "PHASE 0 GATEWAY: OPEN",
-        "CONNECTING TO NODES: [HKG, FRA, NYC]",
-        "CALIBRATING EXECUTION LATENCY...",
-        "STATUS: STABLE (12.4ms)",
-        "CHECKING VALIDATION CAPACITY...",
-        "SYSTEM_STATUS: STANDBY_MODE",
-        "READY FOR ALLOCATOR PROTOCOL."
-      ];
-      let i = 0;
-      const interval = setInterval(() => {
-        if (i < messages.length) {
-          setLogs(prev => [...prev, `[${new Date().toLocaleTimeString()}] ${messages[i]}`]);
-          i++;
-        } else {
-          clearInterval(interval);
-        }
-      }, 700);
-      return () => clearInterval(interval);
-    } else {
-      setLogs([]);
-    }
-  }, [isOpen]);
-
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, [logs]);
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   if (!isOpen) return null;
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    // Simulate encryption and submission delay
+    setTimeout(() => {
+      setLoading(false);
+      setSubmitted(true);
+    }, 2000);
+  };
+
+  const handleClose = () => {
+    setSubmitted(false);
+    onClose();
+  };
+
   return (
-    <div className="fixed inset-0 z-[400] flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm">
-      <div className="w-full max-w-2xl glass rounded-xl overflow-hidden border-white/10 shadow-2xl">
-        <div className="bg-white/5 border-b border-white/10 px-4 py-3 flex justify-between items-center">
-          <span className="font-mono text-[9px] text-gold font-bold tracking-[0.2em] uppercase">System Integrity Terminal</span>
-          <button onClick={onClose} className="text-slate-400 hover:text-white">&times;</button>
-        </div>
-        <div ref={scrollRef} className="p-8 h-80 overflow-y-auto font-mono text-[10px] text-slate-300 leading-relaxed bg-[#010409]">
-          {logs.map((log, idx) => (
-            <div key={idx} className="mb-1 text-slate-400">
-              <span className="text-gold/50 mr-2">SYS:</span> {log}
+    <div className="fixed inset-0 z-[300] flex items-center justify-center p-4 bg-black/95 backdrop-blur-xl">
+      <div className="w-full max-w-xl glass rounded-2xl overflow-hidden border-gold/20 p-8 shadow-2xl relative">
+        <button onClick={handleClose} className="absolute top-6 right-6 text-slate-500 hover:text-white transition-colors text-2xl z-10">&times;</button>
+        
+        {!submitted ? (
+          <>
+            <div className="mb-8">
+              <h3 className="font-space text-2xl font-bold text-white mb-2 tracking-tight">Institutional Onboarding</h3>
+              <p className="text-slate-400 text-sm">Initiate the Phase 0 secure protocol. All data is AES-256 encrypted.</p>
             </div>
-          ))}
-          <div className="animate-pulse inline-block w-1.5 h-3.5 bg-gold ml-1"></div>
-        </div>
-        <div className="p-4 border-t border-white/5 grid grid-cols-3 gap-4 text-center bg-white/5">
-          <div className="space-y-0.5">
-            <div className="text-[8px] text-slate-500 uppercase font-bold tracking-widest">Integrity</div>
-            <div className="text-emerald text-xs font-bold">99.98%</div>
+            
+            <form className="space-y-6" onSubmit={handleSubmit}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-[9px] uppercase tracking-[0.2em] text-slate-500 font-bold">Principal Identity</label>
+                  <input type="text" required className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:border-gold outline-none transition-all placeholder:text-slate-700" placeholder="Full Legal Name" />
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-[9px] uppercase tracking-[0.2em] text-slate-500 font-bold">Secure Communication</label>
+                  <input type="email" required className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:border-gold outline-none transition-all placeholder:text-slate-700" placeholder="Corporate Email" />
+                </div>
+              </div>
+              
+              <div className="space-y-1.5">
+                <label className="text-[9px] uppercase tracking-[0.2em] text-slate-500 font-bold">Institutional Affiliation</label>
+                <input type="text" required className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:border-gold outline-none transition-all placeholder:text-slate-700" placeholder="Firm Name / Entity Type" />
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-[9px] uppercase tracking-[0.2em] text-slate-500 font-bold">Brief Intent</label>
+                <textarea rows={3} className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:border-gold outline-none transition-all placeholder:text-slate-700 resize-none" placeholder="Purpose of allocation..."></textarea>
+              </div>
+
+              <button 
+                type="submit" 
+                disabled={loading}
+                className="w-full py-4 bg-gold text-navy font-bold rounded-xl hover:opacity-90 active:scale-[0.98] transition-all text-xs uppercase tracking-widest flex items-center justify-center gap-3"
+              >
+                {loading ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-navy/20 border-t-navy rounded-full animate-spin"></div>
+                    Encrypting Payload...
+                  </>
+                ) : 'Submit Phase 0 Request'}
+              </button>
+            </form>
+          </>
+        ) : (
+          <div className="py-12 text-center animate-in fade-in zoom-in duration-500">
+            <div className="w-20 h-20 bg-emerald/10 border border-emerald/20 rounded-full flex items-center justify-center mx-auto mb-8">
+              <svg className="w-10 h-10 text-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <h3 className="font-space text-3xl font-bold text-white mb-4">Request Encrypted</h3>
+            <p className="text-slate-400 text-base leading-relaxed max-w-xs mx-auto mb-10">
+              Your institutional credentials have been queued for validation. A principal will contact you via secure channels within 24 hours.
+            </p>
+            <button 
+              onClick={handleClose}
+              className="px-12 py-4 glass border border-white/10 text-white font-bold rounded-xl hover:bg-white/5 transition-all text-xs uppercase tracking-widest"
+            >
+              Close Gateway
+            </button>
           </div>
-          <div className="space-y-0.5">
-            <div className="text-[8px] text-slate-500 uppercase font-bold tracking-widest">Latency</div>
-            <div className="text-white text-xs font-bold">12.4ms</div>
-          </div>
-          <div className="space-y-0.5">
-            <div className="text-[8px] text-slate-500 uppercase font-bold tracking-widest">Gateway</div>
-            <div className="text-gold text-xs font-bold">PHASE 0</div>
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );
 };
 
 const App: React.FC = () => {
-  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
   const [isIntroOpen, setIsIntroOpen] = useState(false);
 
   return (
@@ -133,7 +115,6 @@ const App: React.FC = () => {
           <span className="mx-12 text-[9px] font-mono text-slate-500 uppercase tracking-[0.2em]">CAPACITY: <span className="text-gold">CONSTRAINED</span></span>
           <span className="mx-12 text-[9px] font-mono text-slate-500 uppercase tracking-[0.2em]">STATUS: <span className="text-emerald">SYNCHRONIZED</span></span>
           
-          {/* Loop overlap */}
           <span className="mx-12 text-[9px] font-mono text-slate-500 uppercase tracking-[0.2em]">PHASE 0 PROTOCOL: <span className="text-emerald">ACTIVE</span></span>
           <span className="mx-12 text-[9px] font-mono text-slate-500 uppercase tracking-[0.2em]">ENCRYPTION: <span className="text-white">AES-256</span></span>
         </div>
@@ -157,30 +138,25 @@ const App: React.FC = () => {
         <AllocationTree />
         <Governance />
 
-        <section className="py-12 md:py-16 relative overflow-hidden">
+        <section id="contact" className="py-12 md:py-20 relative overflow-hidden">
           <div className="container mx-auto px-6 text-center">
-            <div className="max-w-3xl mx-auto glass p-8 md:p-12 rounded-3xl border-gold/5 relative group hover:border-gold/20 transition-all duration-700">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gold px-6 py-2 rounded-lg text-navy text-[10px] font-bold uppercase tracking-[0.3em] shadow-2xl">
+            <div className="max-w-4xl mx-auto glass p-10 md:p-16 rounded-3xl border-gold/5 relative group hover:border-gold/20 transition-all duration-700">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gold px-8 py-2.5 rounded-lg text-navy text-[10px] font-bold uppercase tracking-[0.4em] shadow-2xl">
                 Gateway Introduction
               </div>
               
-              <h2 className="font-space text-3xl md:text-4xl font-bold mb-6 tracking-tight text-white">Selective Connectivity</h2>
-              <p className="text-slate-500 mb-8 text-base leading-relaxed max-w-xl mx-auto font-light">
-                SageAlpha is engineered for long-horizon institutional viability. We invite sophisticated entities to initiate a secure introduction protocol.
+              <h2 className="font-space text-4xl md:text-5xl font-bold mb-8 tracking-tight text-white">Selective Connectivity</h2>
+              <p className="text-slate-500 mb-12 text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-light">
+                SageAlpha is engineered for long-horizon institutional viability. We invite sophisticated entities and institutional allocators to initiate a secure introduction protocol.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <button 
                   onClick={() => setIsIntroOpen(true)}
-                  className="px-10 py-4 bg-gold text-navy font-bold rounded-xl hover:opacity-90 active:scale-[0.98] transition-all text-xs uppercase tracking-widest shadow-xl"
+                  className="group relative px-14 py-5 bg-gold text-navy font-bold rounded-xl transition-all shadow-xl overflow-hidden text-[11px] uppercase tracking-widest"
                 >
-                  Initiate Introduction
-                </button>
-                <button 
-                  onClick={() => setIsTerminalOpen(true)}
-                  className="px-10 py-4 glass border border-white/5 text-white/80 font-bold rounded-xl hover:bg-white/5 transition-all text-xs uppercase tracking-widest"
-                >
-                  System Log
+                  <span className="relative z-10">Initiate Introduction</span>
+                  <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                 </button>
               </div>
             </div>
@@ -190,21 +166,6 @@ const App: React.FC = () => {
 
       <Footer />
       
-      {/* Minimal Status Indicator */}
-      <div className="fixed bottom-8 right-8 z-[150]">
-        <button 
-          onClick={() => setIsTerminalOpen(true)}
-          className="px-5 py-3.5 glass border border-white/10 rounded-full shadow-2xl hover:scale-105 transition-all flex items-center gap-4 font-mono text-[9px] font-bold tracking-[0.3em] uppercase text-white/70"
-        >
-          <div className="relative">
-            <div className="w-2 h-2 rounded-full bg-emerald animate-ping absolute inset-0"></div>
-            <div className="w-2 h-2 rounded-full bg-emerald relative"></div>
-          </div>
-          Phase 0 Online
-        </button>
-      </div>
-
-      <TerminalModal isOpen={isTerminalOpen} onClose={() => setIsTerminalOpen(false)} />
       <IntroModal isOpen={isIntroOpen} onClose={() => setIsIntroOpen(false)} />
     </div>
   );

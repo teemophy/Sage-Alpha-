@@ -7,6 +7,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Roadmap', href: '#journey' },
   { label: 'Allocation', href: '#allocation' },
   { label: 'Governance', href: '#governance' },
+  { label: 'Contact', href: '#contact' },
 ];
 
 export const PHASES: Phase[] = [
