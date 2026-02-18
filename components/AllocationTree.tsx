@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const AllocationTree: React.FC = () => {
@@ -6,6 +5,7 @@ const AllocationTree: React.FC = () => {
     <section id="allocation" className="py-24 bg-[#020617] relative">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center mb-16">
+          <div className="text-[10px] font-mono text-gold mb-4 uppercase tracking-[0.4em] font-bold">Phase 0 Parameters</div>
           <h2 className="font-space text-4xl md:text-5xl font-bold mb-6">Allocation Framework</h2>
         </div>
 
@@ -14,9 +14,9 @@ const AllocationTree: React.FC = () => {
             {/* Numerical Highlights */}
             <div className="space-y-6">
               <div className="grid sm:grid-cols-2 gap-4">
-                <div className="glass p-10 rounded-2xl border-green/10 text-center">
+                <div className="glass p-10 rounded-2xl border-white/10 text-center">
                   <div className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-2">Minimum</div>
-                  <div className="text-4xl font-space font-bold text-green">$25,000</div>
+                  <div className="text-4xl font-space font-bold text-white">$25,000</div>
                 </div>
                 <div className="glass p-10 rounded-2xl border-gold/10 text-center">
                   <div className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-2">Maximum</div>
@@ -37,7 +37,7 @@ const AllocationTree: React.FC = () => {
 
             {/* Parameters Table */}
             <div className="glass p-10 rounded-3xl border-white/5 space-y-8">
-              <h3 className="font-space text-2xl font-bold border-b border-white/5 pb-6">Allocation Parameters</h3>
+              <h3 className="font-space text-2xl font-bold border-b border-white/5 pb-6">Protocol Parameters</h3>
               
               <div className="space-y-6">
                 <div className="flex justify-between items-center text-sm">
@@ -46,11 +46,11 @@ const AllocationTree: React.FC = () => {
                 </div>
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-slate-400 uppercase tracking-widest text-[10px] font-bold">Liquidity Window</span>
-                  <span className="text-white font-medium text-green">Monthly Review</span>
+                  <span className="text-white font-medium">Monthly Review</span>
                 </div>
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-slate-400 uppercase tracking-widest text-[10px] font-bold">Lockup Period</span>
-                  <span className="text-white font-medium text-gold">None (Flexible)</span>
+                  <span className="text-gold font-medium">None (Flexible)</span>
                 </div>
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-slate-400 uppercase tracking-widest text-[10px] font-bold">Reporting Frequency</span>
@@ -59,7 +59,7 @@ const AllocationTree: React.FC = () => {
               </div>
 
               <div className="mt-8 pt-8 border-t border-white/5">
-                 <div className="inline-block px-4 py-1.5 rounded-full bg-green/10 border border-green/30 text-green text-[10px] font-bold uppercase tracking-widest">
+                 <div className="inline-block px-4 py-1.5 rounded-full bg-emerald/10 border border-emerald/30 text-emerald text-[10px] font-bold uppercase tracking-widest">
                    PHASE 0 CAPACITY ACTIVE
                  </div>
               </div>
